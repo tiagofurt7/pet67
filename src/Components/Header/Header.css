@@ -1,0 +1,179 @@
+/* Tokens globais (cores, fontes, tema claro/escuro) + estilos do Header */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap');
+
+/* ---------- Tokens ---------- */
+:root {
+  --fundo: #eaf4fb;
+  --superficie: #ffffff;
+  --superficie-2: #f3f9fd;
+  --texto: #12304a;
+  --texto-suave: #55718a;
+  --borda: #d3e4f1;
+  --sombra: 0 10px 30px -12px rgba(20, 80, 130, 0.22);
+
+  --azul: #2a7de1;
+  --azul-escuro: #1a5bb0;
+  --coral: #ff6f59;
+  --coral-escuro: #d94532;
+  --verde: #2fb67c;
+  --verde-escuro: #1b7f55;
+  --amarelo: #ffb703;
+  --amarelo-escuro: #b36b00;
+
+  --fonte-titulo: 'Fredoka', system-ui, sans-serif;
+  --fonte-texto: 'Nunito Sans', system-ui, sans-serif;
+
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte-texto);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+:root[data-tema='escuro'] {
+  --fundo: #0c1b29;
+  --superficie: #132a3d;
+  --superficie-2: #1a374f;
+  --texto: #e8f3fc;
+  --texto-suave: #9bb6cc;
+  --borda: #264761;
+  --sombra: 0 10px 30px -12px rgba(0, 0, 0, 0.55);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---------- Header ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px clamp(16px, 4vw, 40px);
+  background: color-mix(in srgb, var(--superficie) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borda);
+}
+
+.header__marca {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Logo: patinha */
+.header__logo {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 16px 16px 16px 4px;
+  background: linear-gradient(145deg, var(--amarelo), var(--coral));
+  box-shadow: 0 8px 18px -8px var(--coral);
+  font-size: 1.5rem;
+}
+
+.header__titulo {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.header__subtitulo {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.header__acoes {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Alternador de tema */
+.header__tema {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--texto-suave);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.header__tema-trilho {
+  width: 52px;
+  height: 28px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--superficie-2);
+  border: 1px solid var(--borda);
+  transition: background 0.3s ease;
+}
+
+.header__tema-bolinha {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--superficie);
+  box-shadow: var(--sombra);
+  font-size: 0.7rem;
+  transition: transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+.header__tema[aria-pressed='true'] .header__tema-bolinha {
+  transform: translateX(24px);
+}
+
+.header__avatar {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--superficie-2);
+  border: 2px solid var(--azul);
+  font-family: var(--fonte-titulo);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .header__subtitulo,
+  .header__tema-texto {
+    display: none;
+  }
+}
